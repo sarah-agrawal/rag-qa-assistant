@@ -23,8 +23,7 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+I picked 4 of 5 because question 5 (where to stay near Givens Mill) is likely to be the hardest. Every town guide has a "Where to stay" section with similar wording, so retrieval might return another town's section. The correct answer is also "Brightwater," another town's name, which makes a mix-up more likely.
 
 ---
 
@@ -33,8 +32,7 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+I expect all 5 because every retrieved chunk is labeled with its source file, and the grounding prompt tells the model to cite the file. In my first test answer, it cited a file after every fact. The only way this fails is if the model ignores that instruction. 
 
 ---
 
@@ -44,53 +42,31 @@ When I ask a question my documents clearly don't cover, the relevance gate
 stops it and the system returns "I don't have enough information about that" —
 in at least 4 of 5 tries.
 
-<!-- The five questions are the ones in `OUT_OF_SCOPE` at the bottom of
-     `questions.py`, and `run_eval.py` puts them through the gate and writes
-     what happened into your run log. Swap them for your own if you'd rather —
-     just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
-
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
+Most of the off-topic questions share nothing with travel guides, so their distances should be far from the cutoff. The diesel engine question overlaps a little with the transport sections, so I'm leaving room for one to slip through.
 
 ---
 
 ## 4. Something about your chunks
 
-<!-- YOU WRITE THIS ONE.
-
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
-
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
-
+Across all chunks, every chunk covers exactly one section of one guide (at most one "##" heading), and every chunk names the town or guide it comes from.
 
 
 **Why this target:**
-
+My questions each ask about one topic in one town, and the starter's chunker cut through section headings. Some sections also never name their own town (Givens Mill's "Where to stay" only mentions Brightwater), so the town name has to be in the chunk. 
 
 
 ---
 
 ## 5. Your choice
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
-
-
+For at least 4 of my 5 test questions, the answer cites the guide for the town the question
+asks about.
 
 **Why this target:**
-
+Criterion 2 only checks that a source is named, not that it's the right one. I picked 4 of 5 because question 5's answer is "Brightwater," so the model may cite Brightwater's guide instead of Givens Mill's
 
 
 ---
