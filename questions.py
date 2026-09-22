@@ -23,11 +23,11 @@ names a target of "4 of 5", and four of three is not a thing.
 
 QUESTIONS = [
     # {"question": "...", "expects": "..."},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
+    {"question": "How many levels is Halden Bay built on?", "expects": "three"},
+    {"question": "On which day does the local bus in Brightwater stop running?", "expects": "Sunday"},
+    {"question": "On which day is the pub in Elder Ness closed?", "expects": "Monday"},
+    {"question": "Which months are the gardens at their best in Thornby Wells?", "expects": "May"},
+    {"question": "Where is the nearest place to stay when visiting Givens Mill?", "expects": "Brightwater"},
 ]
 
 # Questions from a different world entirely. Your gate should refuse all five.
@@ -44,7 +44,6 @@ OUT_OF_SCOPE = [
     "What is the recommended dosage of ibuprofen for a headache?",
     "How do I write a for loop in Rust?",
 ]
-
 
 def answered() -> list[dict]:
     """The questions you've actually filled in."""
