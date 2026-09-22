@@ -29,18 +29,16 @@
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** Not fixed. One chunk per section, ranging from 177 to 712 characters, above 300 on average
+**Overlap:** 0
 
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
-
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
-
-     Milestone 3. -->
+My strategy is to split each guide on its "##" section headers. On top of each chunk, I
+add the village name from the title at the top of the file (for the five topic guides,
+like eating and walking, this is the guide's title). Each section is short enough to fit
+in one chunk, so nothing gets cut and no overlap is needed. This way each chunk contains
+specific info about one village and one section of that village. The starter's
+800-character chunks cut straight through the section headers, and some sections never
+name their own village (Givens Mill's "Where to stay"), which is why I add the name.
 
 ## Sample Chunks
 

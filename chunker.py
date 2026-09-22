@@ -22,6 +22,7 @@ to it, write down what you saw, and move on. That's a real observation about
 your pipeline, not giving up.
 """
 
+import re #to find every line starting with ##
 from dataclasses import dataclass
 
 import config
@@ -97,7 +98,28 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
       - Would splitting on paragraph breaks keep more thoughts intact than
         splitting on a character count?
     """
-    return fallback_split(documents)
+    chunks: list[Chunk] = []
+
+    for doc in documents:
+        first_line = doc.text.split("\n", 1)[0]     # Get the title of the document
+        title = first_line.strip("#").strip()
+
+        sections = re.split(r"\n(?=## )", doc.text)  # Split on lines starting with '##'
+
+        for index, section in enumerate(sections):
+            section = section.strip()
+            if not section:
+                continue
+            if index == 0:
+                if section == first_line:
+                    continue
+                text = section  # Intro alr starts with the title, so no need to add it again
+            else:
+                text = f"{title}\n{section}"    # Prepend the title to each section for context
+
+            chunks.append(Chunk(text=text, source=doc.source, index=index, produced_by="chunker.py::split_documents"))
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:
