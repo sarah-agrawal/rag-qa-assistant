@@ -1,6 +1,6 @@
 # The Unofficial Guide
 
-<!-- Replace this line with your name and which corpus you picked. -->
+Sarah Agrawal, city_guides corpus
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
@@ -29,7 +29,8 @@
 
 ## Chunking Strategy
 
-**Chunk size:** Not fixed. One chunk per section, ranging from 177 to 712 characters, above 300 on average
+**Chunk size:** Not fixed. One chunk per section, 94 chunks total, ranging from 174 to 759 characters (about 319 on average, including the town name on top)
+
 **Overlap:** 0
 
 My strategy is to split each guide on its "##" section headers. On top of each chunk, I
@@ -40,41 +41,56 @@ specific info about one village and one section of that village. The starter's
 800-character chunks cut straight through the section headers, and some sections never
 name their own village (Givens Mill's "Where to stay"), which is why I add the name.
 
+My first version made 98 chunks, but four of them were only a title line (23 to 27 characters), because four topic guides have no intro paragraph. I added a check to skip intros that are only the title, which brought it to 94.
+
 ## Sample Chunks
 
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
-
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
-
-     Milestone 3. -->
-
-**Chunk 1** — source: `` — produced by: ``
+**Chunk 1** — source: `guide_accessibility.md#0` — produced by: `chunker.py::split_documents`
 
 ```
+# Getting around the region with limited mobility
+
+An honest assessment rather than a promotional one. Some of these places are
+difficult and it is better to know in advance.
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: `guide_corry_vale.md#5` — produced by: `chunker.py::split_documents`
 
 ```
+Corry Vale
+## Where to stay
+
+Perhaps thirty beds in the entire valley, spread across two pubs and a handful of farmhouse rooms. In summer these are booked months ahead. Camping is permitted on two marked fields and nowhere else.
 ```
 
-**Chunk 3** — source: `` — produced by: ``
+**Chunk 3** — source: `guide_givens_mill.md#2` — produced by: `chunker.py::split_documents`
 
 ```
+Givens Mill
+## Getting around
+
+Everything is on one street along the river. The mill is at one end and the church at the other, eight minutes apart. The riverside path continues in both directions for as far as you want to walk.
 ```
 
-**Chunk 4** — source: `` — produced by: ``
+**Chunk 4** — source: `guide_kestrelford.md#4` — produced by: `chunker.py::split_documents`
 
 ```
+Kestrelford
+## What to see
+
+The market square on a Saturday morning is the main event and has run continuously since the 1400s. The parish church has a 13th-century tower you can climb for £2. The old trackbed walk runs six miles to the next village along an easy gradient and is the best half-day here.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 5** — source: `guide_pellew_sands.md#6` — produced by: `chunker.py::split_documents`
 
 ```
+Pellew Sands
+## When to go
+
+June and September for the beach without the crowds. July and August are busy and the town is at its most itself, for better and worse. Winter is bleak, largely closed, and has a following among people who like that sort of thing.
 ```
+
+Chunks 2 to 5 each answer a question on their own and name their town. Chunk 1 is the accessibility guide's intro, which has no facts, so it can't answer a question by itself.
 
 ## Sample Answer
 
